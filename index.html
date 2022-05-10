@@ -14,11 +14,11 @@
         <div id="root">
             <div id="chat-list-col">
                 <div class="ui-bar" id="chat-list-options">
-                    <div id="user-thumb">
+                    <div class="user-thumb">
                         <div class="thumbnail">
                             <img src="img/avatar_io.jpg" alt="">
                         </div>
-                        <div id="user-name">
+                        <div class="user-name">
                             Sofia
                         </div>
                     </div>
@@ -43,11 +43,42 @@
                         <p><a href="#">Attiva notifiche desktop</a></p>
                     </div>
                 </div>
-                <div id="chat-filter">filtro</div>
-                <div id="chat-list">lista</div>
+                <div id="chat-filter">
+                    <div class="search-btn">
+                        <div class="icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Cerca o inizia una nuova chat">
+                </div>
+                <div id="chat-list">
+                    <div class="chat-li">
+                        <div class="thumbnail">
+                            <img src="img/avatar_1.jpg" alt="Michele">
+                        </div>
+                        <div class="chat-li-text">
+                            <div class="chat-li-heading">
+                                <div class="chat-li-name">Michele</div>
+                                <div class="chat-li-time">20/03/2020 12:00:00</div>
+                            </div>
+                            <div class="chat-li-lastmess">MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM...</div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+            <!-- CHAT COLUMN (right) -->
             <div id="chat-col">
-                <div class="ui-bar" id="chat-options">bar</div>
+                <div class="ui-bar" id="chat-options">
+                    <div class="user-thumb">
+                        <div class="thumbnail">
+                            <img src="img/avatar_1.jpg" alt="">
+                        </div>
+                        <div class="user-name">
+                            Michele
+                        </div>
+                    </div>
+                </div>
                 <div id="chat">chat view</div>
                 <div class="ui-bar" id="input-bar">input</div>
             </div>
