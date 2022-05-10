@@ -167,6 +167,7 @@ const app = new Vue(
         el : '#root',
         data: {
             contacts: contacts,
+            currentChat:0
         },
         methods: {
             }

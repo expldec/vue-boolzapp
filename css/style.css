@@ -167,6 +167,10 @@ a {
     padding: 0.5rem;
 }
 
+.chat-li.active {
+    background-color: var(--ms_color-lightcoolgrey);
+}
+
 .chat-li .thumbnail {
     flex-shrink: 0;
     margin: 0.5rem;

@@ -52,16 +52,19 @@
                     <input type="text" id="filter-input" placeholder="Cerca o inizia una nuova chat">
                 </div>
                 <div id="chat-list">
-                    <div class="chat-li">
+                    <div class="chat-li"
+                    v-for="(contact, index) in contacts"
+                    :class="{active: index === currentChat}"
+                    >
                         <div class="thumbnail">
-                            <img src="img/avatar_1.jpg" alt="Michele">
+                            <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                         </div>
                         <div class="chat-li-text">
                             <div class="chat-li-heading">
-                                <div class="chat-li-name">Michele</div>
-                                <div class="chat-li-time">20/03/2020 12:00:00</div>
+                                <div class="chat-li-name">{{contact.name}}</div>
+                                <div class="chat-li-time">{{contact.messages[contact.messages.length - 1].date}}</div>
                             </div>
-                            <div class="chat-li-lastmess">MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM...</div>
+                            <div class="chat-li-lastmess">{{contact.messages[contact.messages.length - 1].message}}</div>
                         </div>
                     </div>
                 </div>
@@ -71,10 +74,10 @@
                 <div class="ui-bar" id="chat-options">
                     <div class="user-thumb">
                         <div class="thumbnail">
-                            <img src="img/avatar_1.jpg" alt="">
+                            <img :src="'img/avatar' + contacts[currentChat].avatar + '.jpg'" :alt="contacts[currentChat].name">
                         </div>
                         <div class="user-name">
-                            Michele
+                            {{contacts[currentChat].name}}
                             <div class="user-last-seen">
                                 Ultimo accesso oggi alle 12:00
                             </div>
@@ -95,34 +98,12 @@
 
 
                 <div id="chat">
-                    <div class="message-row sent">
+                    <div class="message-row"
+                    v-for="message in contacts[currentChat].messages"
+                    :class="message.status">
                         <div class="message">
-                            Prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova
-                        <div class="msg-time">12:00</div>
-                        </div>
-                    </div>
-                    <div class="message-row received">
-                        <div class="message">
-                            Prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova prova
-                            <div class="msg-time">12:00</div>
-                        </div>
-                    </div>
-                    <div class="message-row received">
-                        <div class="message">
-                            ciao
-                            <div class="msg-time">12:00</div>
-                        </div>
-                    </div>
-                    <div class="message-row sent">
-                        <div class="message">
-                            ciao
-                            <div class="msg-time">12:00</div>
-                        </div>
-                    </div>
-                    <div class="message-row sent">
-                        <div class="message">
-                            blabla
-                            <div class="msg-time">12:00</div>
+                            {{message.message}}
+                        <div class="msg-time">{{message.date}}</div>
                         </div>
                     </div>
                     
