@@ -1,0 +1,16 @@
+:root {
+    --ms_color-green: #009688;         /* background top bar */
+    --ms_color-lightgreen: #d5f9ba;    /* sent messages */
+    --ms_color-darkgrey: #6b7376;      /* mid-contrast text */
+    --ms_color-grey: #b1b1b1;          /* low-constrast text */
+    --ms_color-midgray: #dbdbd3;       /* background */
+    --ms_color-lightcoolgray: #e9ebeb; /* top bars and active chat */
+    --ms_color-lightwarmgray: #f3eeea; /* input bar */
+    --ms_color-lightblue: #7cc4e6;     /* notification reminder bar */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
