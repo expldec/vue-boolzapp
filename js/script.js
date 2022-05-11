@@ -177,19 +177,21 @@ const app = new Vue(
                 this.currentChat = index;
             },
             sendMessage: function(){
-            let messageToSend = {};
-            messageToSend.date = dayjs().format('D/MM/YYYY HH:mm:ss');
-            messageToSend.message = this.contacts[this.currentChat].currentInput;
-            messageToSend.status = 'sent';
-            this.contacts[this.currentChat].messages.push(messageToSend);
-            this.contacts[this.currentChat].currentInput = '';
-            setTimeout(() => {
-                let messageReply = {
-                    date: dayjs().format('D/MM/YYYY HH:mm:ss'),
-                    message:'ok',
-                    status:'received'}
-                this.contacts[this.currentChat].messages.push(messageReply);
-            }, 1000);
+                if (this.contacts[this.currentChat].currentInput) {
+                    let messageToSend = {};
+                    messageToSend.date = dayjs().format('D/MM/YYYY HH:mm:ss');
+                    messageToSend.message = this.contacts[this.currentChat].currentInput;
+                    messageToSend.status = 'sent';
+                    this.contacts[this.currentChat].messages.push(messageToSend);
+                    this.contacts[this.currentChat].currentInput = '';
+                    setTimeout(() => {
+                        let messageReply = {
+                            date: dayjs().format('D/MM/YYYY HH:mm:ss'),
+                            message:'ok',
+                            status:'received'}
+                        this.contacts[this.currentChat].messages.push(messageReply);
+                    }, 1000);
+                }
             },
             toggleVisible: function() {
                 this.contacts.forEach(element => {
