@@ -164,7 +164,7 @@ a {
     display: flex;
     align-items: center;
     height:  4rem;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
 }
 
 .chat-li.active {

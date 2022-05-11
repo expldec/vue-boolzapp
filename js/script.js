@@ -1,4 +1,6 @@
- const contacts = [
+dayjs.extend(window.dayjs_plugin_customParseFormat);
+
+const contacts = [
     {
         name: 'Michele',
         avatar: '_1',
@@ -166,10 +168,36 @@ const app = new Vue(
     {
         el : '#root',
         data: {
+            currentChat:0,
+            bla:'ciaodd',
             contacts: contacts,
-            currentChat:0
         },
         methods: {
+            switchCurrentChat: function(index) {
+                this.currentChat = index;
+            },
+            sendMessage: function(){
+            let messageToSend = {};
+            messageToSend.date = dayjs().format('D/MM/YYYY HH:mm:ss');
+            messageToSend.message = this.contacts[this.currentChat].currentInput;
+            messageToSend.status = 'sent';
+            this.contacts[this.currentChat].messages.push(messageToSend);
+            this.contacts[this.currentChat].currentInput = '';
+            setTimeout(() => {
+                let messageReply = {
+                    date: dayjs().format('D/MM/YYYY HH:mm:ss'),
+                    message:'ok',
+                    status:'received'}
+                this.contacts[this.currentChat].messages.push(messageReply);
+            }, 1000);
             }
+        },
+        created() {
+            // alla creazione dell'istanza Vue, aggiungiamo la key 'currentInput' a tutti i contatti.
+            this.contacts.forEach(element => {
+                Vue.set(element, 'currentInput', '');
+            });
+        }
     }
 )
+

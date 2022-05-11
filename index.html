@@ -44,17 +44,18 @@
                     </div>
                 </div>
                 <div id="chat-filter">
-                    <div class="search-btn">
+                    <label for="filter-input" class="search-btn">
                         <div class="icon">
                             <i class="fas fa-search"></i>
                         </div>
-                    </div>
+                    </label>
                     <input type="text" id="filter-input" placeholder="Cerca o inizia una nuova chat">
                 </div>
                 <div id="chat-list">
                     <div class="chat-li"
                     v-for="(contact, index) in contacts"
                     :class="{active: index === currentChat}"
+                    @click="switchCurrentChat(index)"
                     >
                         <div class="thumbnail">
                             <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
@@ -116,7 +117,11 @@
                             <i class="far fa-smile"></i>
                         </div>
                     </div>
-                    <input type="text" id="chat-input" placeholder="Scrivi un messaggio">
+                    <input
+                        type="text" id="chat-input"
+                        v-model="contacts[currentChat].currentInput"
+                        @keyup.enter="sendMessage"
+                        placeholder="Scrivi un messaggio">
                     <div class="input-buttons">
                         <div class="icon">
                             <i class="fas fa-microphone"></i>
@@ -127,6 +132,8 @@
        </div>
     </div>
 
+    <script src="https://unpkg.com/dayjs@1.11.2/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.11.2/plugin/customParseFormat.js"></script>
     <script src="js/script.js" type="text/javascript"></script>
 </body>
 </html>
