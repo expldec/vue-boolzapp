@@ -169,7 +169,7 @@ const app = new Vue(
         el : '#root',
         data: {
             currentChat:0,
-            bla:'ciaodd',
+            chatListFilter:'',
             contacts: contacts,
         },
         methods: {
@@ -190,6 +190,11 @@ const app = new Vue(
                     status:'received'}
                 this.contacts[this.currentChat].messages.push(messageReply);
             }, 1000);
+            },
+            toggleVisible: function() {
+                this.contacts.forEach(element => {
+                    element.name.toLowerCase().includes(this.chatListFilter.toLowerCase()) ? element.visible = true : element.visible = false;
+                });
             }
         },
         created() {
