@@ -102,16 +102,16 @@
                 </div>
 
 
-                <div id="chat">
+                <div id="chat" @click="toggleMenu($event)">
                     <div class="message-row"
                     v-for="(message, index) in contacts[currentChat].messages"
                     :class="message.status">
                         <div class="message">
                             {{message.message}}
                         <div class="msg-time">{{message.date}}</div>
-                        <div class="msg-chevron" @click="toggleMenu(index)"></div>
-                        </div>
-                        <div class="msg-menu" @click="msgMenu()">Delete message</div>
+                        <div class="msg-chevron" @click="toggleMenu($event,index)"></div>
+                        <div class="msg-menu" v-if="index === contextMenu.index && contextMenu.show" @click="deleteMessage(index)">Delete message</div>
+                    </div>
                     </div>
                     
                 </div>

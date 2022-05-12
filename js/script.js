@@ -202,8 +202,16 @@ const app = new Vue(
                     element.name.toLowerCase().includes(this.chatListFilter.toLowerCase()) ? element.visible = true : element.visible = false;
                 });
             },
-            clickOnChat: function (message,event) {
-                console.log(event);
+            toggleMenu: function (e,index) {
+                if (index !== undefined) {
+                    this.contextMenu.show = !this.contextMenu.show;
+                    console.log(this.contextMenu.show);
+                    this.contextMenu.index = index;
+                    e.stopPropagation();
+                }
+                else {
+                    this.contextMenu.show = false;
+                }
             }
         },
         created() {
