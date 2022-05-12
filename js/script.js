@@ -176,6 +176,11 @@ const app = new Vue(
             },
             contacts: contacts,
         },
+        computed: {
+            currentChatObj: function () {
+                return this.contacts[this.currentChat]
+            },
+        },
         methods: {
             switchCurrentChat: function(index) {
                 this.currentChat = index;
@@ -205,13 +210,15 @@ const app = new Vue(
             toggleMenu: function (e,index) {
                 if (index !== undefined) {
                     this.contextMenu.show = !this.contextMenu.show;
-                    console.log(this.contextMenu.show);
                     this.contextMenu.index = index;
                     e.stopPropagation();
                 }
                 else {
                     this.contextMenu.show = false;
                 }
+            },
+            deleteMessage: function(index) {
+                this.currentChatObj.messages.splice(index,1);
             }
         },
         created() {

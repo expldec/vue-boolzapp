@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="app-wrapper">
-        <div id="root">
+        <div id="root" @click="toggleMenu($event)">
             <div id="chat-list-col">
                 <div class="ui-bar" id="chat-list-options">
                     <div class="user-thumb">
@@ -67,9 +67,9 @@
                         <div class="chat-li-text">
                             <div class="chat-li-heading">
                                 <div class="chat-li-name">{{contact.name}}</div>
-                                <div class="chat-li-time">{{contact.messages[contact.messages.length - 1].date}}</div>
+                                <div class="chat-li-time">{{contact.messages.length > 0 ? contact.messages[contact.messages.length - 1].date : ''}}</div>
                             </div>
-                            <div class="chat-li-lastmess">{{contact.messages[contact.messages.length - 1].message}}</div>
+                            <div class="chat-li-lastmess">{{contact.messages.length > 0 ? contact.messages[contact.messages.length - 1].message : ''}}</div>
                         </div>
                     </div>
                 </div>
@@ -79,10 +79,10 @@
                 <div class="ui-bar" id="chat-options">
                     <div class="user-thumb">
                         <div class="thumbnail">
-                            <img :src="'img/avatar' + contacts[currentChat].avatar + '.jpg'" :alt="contacts[currentChat].name">
+                            <img :src="'img/avatar' + currentChatObj.avatar + '.jpg'" :alt="currentChatObj.name">
                         </div>
                         <div class="user-name">
-                            {{contacts[currentChat].name}}
+                            {{currentChatObj.name}}
                             <div class="user-last-seen">
                                 Ultimo accesso oggi alle 12:00
                             </div>
@@ -102,9 +102,9 @@
                 </div>
 
 
-                <div id="chat" @click="toggleMenu($event)">
+                <div id="chat">
                     <div class="message-row"
-                    v-for="(message, index) in contacts[currentChat].messages"
+                    v-for="(message, index) in currentChatObj.messages"
                     :class="message.status">
                         <div class="message">
                             {{message.message}}
@@ -125,7 +125,7 @@
                     </div>
                     <input
                         type="text" id="chat-input"
-                        v-model="contacts[currentChat].currentInput"
+                        v-model="currentChatObj.currentInput"
                         @keyup.enter="sendMessage"
                         placeholder="Scrivi un messaggio">
                     <div class="input-buttons">
