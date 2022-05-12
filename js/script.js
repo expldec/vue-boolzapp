@@ -20,6 +20,16 @@ const contacts = [
                 date: '10/01/2020 16:15:22',
                 message: 'Tutto fatto!',
                 status: 'received'
+            },
+            {
+                date: '11/01/2020 10:04:40',
+                message: 'Hai raccolto i panni stesi?',
+                status: 'sent'
+            },
+            {
+                date: '11/01/2020 10:23:54',
+                message: 'Cavolo mi sono scordato',
+                status: 'received'
             }
         ],
     },
@@ -188,14 +198,14 @@ const app = new Vue(
             sendMessage: function(){
                 if (this.contacts[this.currentChat].currentInput) {
                     let messageToSend = {};
-                    messageToSend.date = dayjs().format('D/MM/YYYY HH:mm:ss');
+                    messageToSend.date = dayjs().format('DD/MM/YYYY HH:mm:ss');
                     messageToSend.message = this.contacts[this.currentChat].currentInput;
                     messageToSend.status = 'sent';
                     this.contacts[this.currentChat].messages.push(messageToSend);
                     this.contacts[this.currentChat].currentInput = '';
                     setTimeout(() => {
                         let messageReply = {
-                            date: dayjs().format('D/MM/YYYY HH:mm:ss'),
+                            date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                             message:'ok',
                             status:'received'}
                         this.contacts[this.currentChat].messages.push(messageReply);
@@ -219,7 +229,18 @@ const app = new Vue(
             },
             deleteMessage: function(index) {
                 this.currentChatObj.messages.splice(index,1);
-            }
+            },
+            isSameDate: function (dateA,dateB) {
+                let parsedA = dayjs(dateA, 'DD/MM/YYYY HH:mm:ss');
+                let parsedB = dayjs(dateB, 'DD/MM/YYYY HH:mm:ss');
+                return parsedA.format('DD/MM/YYYY') === parsedB.format('DD/MM/YYYY');
+            },
+            getDate: function(date){
+                return dayjs(date,'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY');
+            },
+            getHHMM: function(date){
+                return dayjs(date,'DD/MM/YYYY HH:mm:ss').format('HH:mm');
+            },
         },
         created() {
             // alla creazione dell'istanza Vue, aggiungiamo la key 'currentInput' a tutti i contatti.

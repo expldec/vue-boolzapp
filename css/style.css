@@ -227,6 +227,15 @@ a {
     padding: 2rem 0;
 }
 
+.date-badge {
+    align-self: center;
+    background-color: white;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
 .message-row {
     position: relative;
     display: flex;
@@ -254,7 +263,7 @@ a {
 
 .message {
     position: relative;
-    /* overflow: hidden; */
+    word-wrap: break-word;
     padding: 0.4rem;
     border-radius: 0.5rem;
     font-size: 0.8rem;
