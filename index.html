@@ -104,12 +104,14 @@
 
                 <div id="chat">
                     <div class="message-row"
-                    v-for="message in contacts[currentChat].messages"
+                    v-for="(message, index) in contacts[currentChat].messages"
                     :class="message.status">
                         <div class="message">
                             {{message.message}}
                         <div class="msg-time">{{message.date}}</div>
+                        <div class="msg-chevron" @click="toggleMenu(index)"></div>
                         </div>
+                        <div class="msg-menu" @click="msgMenu()">Delete message</div>
                     </div>
                     
                 </div>

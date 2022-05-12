@@ -252,6 +252,8 @@ a {
 }
 
 .message {
+    position: relative;
+    overflow: hidden;
     padding: 0.4rem;
     border-radius: 0.5rem;
     font-size: 0.8rem;
@@ -267,6 +269,68 @@ a {
     color: var(--ms_color-darkgrey);
 }
 
+.msg-chevron {
+    position: absolute;
+    top:0;
+    right: 0;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.4rem 0.4rem 1rem;
+    opacity: 0;
+}
+
+.message-row.message-row.received .msg-chevron {
+    background: linear-gradient(to left, white 50%, transparent 100%);
+}
+
+.message-row.message-row.sent .msg-chevron {
+    background: linear-gradient(to left, var(--ms_color-lightgreen) 50%, transparent 100%);
+}
+
+.msg-chevron::after {
+    position: relative;
+    right: -0.5rem;
+    content: "";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--ms_color-darkgrey);
+}
+
+.message:hover .msg-chevron::after {
+    content: "\f107";
+    right: 0;
+    animation-name: chevron;
+}
+
+.message:hover .msg-chevron {
+    animation-name: chevron-bg;
+    opacity: 1;
+}
+
+.message:hover .msg-chevron::after,
+.message:hover .msg-chevron {
+    animation-duration: 100ms;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes chevron-bg {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+@keyframes chevron {
+    from {right: -0.5rem;}
+    to {right: 0;}
+  }
+
+  .msg-menu {
+      background-color: white;
+      position: relative;
+      bottom:0.5rem;
+      right:0.5rem;
+      padding: 0.5rem 1rem;
+  }
 
 /* INPUT BAR */
 

@@ -170,6 +170,10 @@ const app = new Vue(
         data: {
             currentChat:0,
             chatListFilter:'',
+            contextMenu: {
+                show: false,
+                index: 0
+            },
             contacts: contacts,
         },
         methods: {
@@ -197,6 +201,9 @@ const app = new Vue(
                 this.contacts.forEach(element => {
                     element.name.toLowerCase().includes(this.chatListFilter.toLowerCase()) ? element.visible = true : element.visible = false;
                 });
+            },
+            clickOnChat: function (message,event) {
+                console.log(event);
             }
         },
         created() {
